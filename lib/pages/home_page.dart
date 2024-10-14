@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:p1_donut_app_javier_martinez/utils/MyTab.dart';
+import '../tab/Burguer_Tab.dart';
+import '../tab/Donut_Tab.dart';
+import '../tab/Pancake_Tab.dart';
+import '../tab/Smothie_Tab.dart';
+import '../tab/Pizza_Tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,13 +18,11 @@ class _HomePageState extends State<HomePage> {
     //donut tab
     const MyTab(iconPath: 'lib/icons/donut.png'),
     //burguer tab
-    const MyTab(iconPath: 'lib/icons/donut.png'),
+    const MyTab(iconPath: 'lib/icons/burger.png'),
     //smothie tab
-    const MyTab(iconPath: 'lib/icons/donut.png'),
-    //pancake tab
-    const MyTab(iconPath: 'lib/icons/donut.png'),
+    const MyTab(iconPath: 'lib/icons/pizza.png'),
     //pizza tab
-    const MyTab(iconPath: 'lib/icons/donut.png'),
+    const MyTab(iconPath: 'lib/icons/smoothie.png'),
   ];
   @override
   Widget build(BuildContext context) {
@@ -59,9 +62,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             //Tab bar
-            TabBar(tabs: myTabs)
+            TabBar(tabs: myTabs),
 
             //Tab bar view
+            const Expanded(
+                child: TabBarView(children: [
+              DonutTab(),
+              BurguerTab(),
+              SmothieTab(),
+              PancakeTab(),
+              PizzaTab(),
+            ]))
 
             //Total del carrito
           ],
