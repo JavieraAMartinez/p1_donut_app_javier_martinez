@@ -16,13 +16,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Widget> myTabs = [
     //donut tab
-    const MyTab(iconPath: 'lib/icons/donut.png'),
+    const MyTab(
+      iconPath: 'lib/icons/donut.png',
+      label: "Donut",
+    ),
+
     //burguer tab
-    const MyTab(iconPath: 'lib/icons/burger.png'),
+    const MyTab(
+      iconPath: 'lib/icons/burger.png',
+      label: "Burguer",
+    ),
     //smothie tab
-    const MyTab(iconPath: 'lib/icons/pizza.png'),
+    const MyTab(
+      iconPath: 'lib/icons/pizza.png',
+      label: "Smothie",
+    ),
     //pizza tab
-    const MyTab(iconPath: 'lib/icons/smoothie.png'),
+    const MyTab(
+      iconPath: 'lib/icons/smoothie.png',
+      label: "Pizza",
+    ),
   ];
   @override
   Widget build(BuildContext context) {
