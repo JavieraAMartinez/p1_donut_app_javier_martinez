@@ -12,34 +12,98 @@ class MyTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tab(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(12),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment
+          .center, // Asegura que todo esté centrado verticalmente
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            shape: BoxShape.circle,
+          ),
+          child: Image.asset(
+            iconPath,
+            color: Colors.grey[600],
+            height: 30,
+          ),
         ),
-        child: Column(
-          // Usamos Column para apilar el ícono y el texto
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              iconPath,
-              color: Colors.grey[600],
-              width: 24, // Ajusta el tamaño según sea necesario
-              height: 24, // Ajusta el tamaño según sea necesario
-            ),
-            const SizedBox(height: 2), // Espacio entre el ícono y el texto
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 9,
-                color: Colors
-                    .black, // Puedes ajustar el color y el tamaño del texto
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.grey[800],
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CartBar extends StatelessWidget {
+  final int itemCount;
+  final double totalAmount;
+  final VoidCallback onViewCartPressed;
+
+  const CartBar({
+    super.key,
+    required this.itemCount,
+    required this.totalAmount,
+    required this.onViewCartPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // Información del carrito
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "$itemCount Items | \$${totalAmount.toStringAsFixed(2)}",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                "Delivery Charges Included",
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+          // Botón "View Cart"
+          ElevatedButton(
+            onPressed: onViewCartPressed,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.pink,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
-          ],
-        ),
+            child: const Text(
+              "View Cart",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }
